@@ -352,8 +352,8 @@ def recording_info_in_dataset(dataset_id, mbid):
         json: If the mbid is present in the dataset, info about the recording
               404 otherwise
      """
-    if not db.dataset.check_recording_in_dataset(dataset_id, mbid):
-        return jsonify(error="Recording not found in the dataset"), 404
+    if not db.dataset.check_recording_in_dataset(dataset_id, mbid) and request.path.startswith(webserver.API_PREFIX):
+        raise NotFound("Recording not found in the dataset")
     return _get_recording_info_for_mbid(mbid)
 
 
