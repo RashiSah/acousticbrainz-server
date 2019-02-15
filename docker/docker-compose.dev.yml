@@ -61,7 +61,7 @@ services:
   musicbrainz_importer:
     build:
       context: ..
-      dockerfile: ./docker/Dockerfile.gaia
+      dockerfile: ./docker/Dockerfile.dev
     command: python2 worker_manage.py musicbrainz_importer
     volumes:
       - ../:/code
